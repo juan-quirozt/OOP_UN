@@ -4,6 +4,8 @@
  */
 package ejercicio40;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Stefany
@@ -47,7 +49,7 @@ public class UI extends javax.swing.JFrame {
         lblDatos.setText("Ingrese un grupo de números separados por comas");
 
         lblRaiz.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblRaiz.setText("La raíz cuadrada de cada uno es:");
+        lblRaiz.setText("La raíz cuadrada (aproximada) de cada uno es:");
 
         txtRaiz.setEditable(false);
         txtRaiz.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -68,8 +70,18 @@ public class UI extends javax.swing.JFrame {
         txtCubo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnCalcular.setText("Calcular");
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,6 +144,46 @@ public class UI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        String datos;
+
+        datos = txtDatos.getText();
+        String grupo[] = datos.split(",");
+        Double[] valores = new Double[grupo.length];
+        
+        int raiz = 0, cuadrado = 0, cubo = 0;
+        double raices[];
+        raices = new double[grupo.length]; // nombre_array = new tipo_dato[tamanio];
+        int cubos[];
+        cubos = new int[grupo.length];
+        int cuadrados[];
+        cuadrados = new int[grupo.length];
+
+        for (int i = 0; i < valores.length; i++) {
+            valores[i] = Double.valueOf(grupo[i]);
+        }
+
+        for (int i = 0; i < valores.length; i++) {
+            raiz = (int) Math.sqrt(valores[i]);
+            raices[i] = raiz;
+            cuadrado = (int) Math.pow(valores[i], 2);
+            cuadrados[i] = cuadrado;
+            cubo = (int) Math.pow(valores[i], 3);
+            cubos[i] = cubo;
+        }
+
+        txtRaiz.setText("" + Arrays.toString(raices));
+        txtCuadrado.setText("" + Arrays.toString(cuadrados));
+        txtCubo.setText("" + Arrays.toString(cubos));
+    }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        txtDatos.setText("");
+        txtRaiz.setText("");
+        txtCuadrado.setText("");
+        txtCubo.setText("");
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     /**
      * @param args the command line arguments
