@@ -4,6 +4,8 @@
  */
 package ejercicio41;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Stefany
@@ -42,6 +44,7 @@ public class UI extends javax.swing.JFrame {
 
         txtMayor.setEditable(false);
         txtMayor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMayor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnCalcular.setText("Calcular");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -101,11 +104,26 @@ public class UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        // TODO add your handling code here:
+        String datos;
+        datos = txtDatos.getText();
+        String grupo[] = datos.split(",");
+        int[] valores = new int[grupo.length];
+
+        for (int i = 0; i < valores.length; i++) {
+            valores[i] = Integer.parseInt(grupo[i]);
+        }
+        int mayor = valores[0];
+        for (int i = 1; i < valores.length; i++) {
+            if (valores[i] > mayor) {
+                mayor = valores[i];
+            }
+        }
+        txtMayor.setText("El mayor es " + mayor);
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
+        txtDatos.setText("");
+        txtMayor.setText("");
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     /**

@@ -147,7 +147,6 @@ public class UI extends javax.swing.JFrame {
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         String datos;
-
         datos = txtDatos.getText();
         String grupo[] = datos.split(",");
         Double[] valores = new Double[grupo.length];
